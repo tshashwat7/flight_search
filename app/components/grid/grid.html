@@ -1,0 +1,88 @@
+<div class="grid" data-ng-show="gridConfig.gridData">
+        <div ng-show="oneWay" class="grid-header">
+            <div ng-click="sort($index)" class="grid-col col-1-4" ng-repeat="name in gridConfig.columnNames">{{name}}
+                <span ng-class="{'sort-up': sortOn[sortOn.colName] && ($index === sortOn.curIndx), 'sort-down': !sortOn[sortOn.colName] && ($index === sortOn.curIndx)}"></span>
+            </div>
+        </div>
+        <div class="grid-body">
+             <div ng-show="oneWay" id="gridRow{{$index}}" ng-repeat="rowItem in gridConfig.gridData | orderBy: sortOn.colName : sortOn[sortOn.colName]">
+                <div class="grid-col col-1-4" ng-repeat="field in gridConfig.fieldNames">{{rowItem[field]}}</div>
+                <div class="col-1-4">
+                        <button class="btn btn-medium btn-normal" ng-click="">Book Ticket</button>
+                    </div>
+            </div>
+          
+           <div ng-show="!oneWay">
+            <div ng-hide ="gridConfig.gridData.length === 0" class="dispalyHead returnHeading">
+                <div class="headings">{{gridConfig.gridData[0].from}}>{{gridConfig.gridData[0].to}}>{{gridConfig.gridData[0].from}}</div>
+                <div class="returnDate">
+                    <p>Depart: {{gridConfig.gridData[0].date}}</p>
+                    <p>Arrive: {{gridConfig.gridData[0].date}}</p>
+                </div>
+            </div>
+            <div id="gridRow{{$index}}" ng-repeat="rowItem in gridConfig.gridData track by $index">
+                    <div class="returnDiv">
+                        
+                        <div class="headings">Rs{{rowItem.flightRate}}</div>
+                        <div class="returnBox">
+
+                        <table class="gridTable">
+                                <tr>
+                                    <td>
+                        <div class=".col-1-8">
+                          <p class="priceDetail">{{rowItem.flightName}}</p>
+                            <table class="details">
+                                    <tr>
+                                      <td>Depart:</td> 
+                                      <td>{{rowItem.departureTime}}</td>
+                                    </tr>
+                                    <tr>
+                                      <td>Arrive:</td> 
+                                      <td>{{rowItem.arrivalTime}}</td>
+                                    </tr>
+                                  </table>
+                        </div>
+                    </td>
+                    <td>
+                        <div ng-show="gridConfig.returnTickets.length > 0" class=".col-1-5 noFlight" ng-init="ind = gridConfig.returnTickets.length < gridConfig.gridData.length ? $index-1  : $index ; val= ind < 1 ? 0 : ind">
+                          <p class="priceDetail">{{gridConfig.returnTickets[val].flightName}}</p>
+                                  <table class="details">
+                                          <tr>
+                                            <td>Depart:</td> 
+                                            <td>{{gridConfig.returnTickets[val].departureTime}}</td>
+                                          </tr>
+                                          <tr>
+                                            <td>Arrive:</td> 
+                                            <td>{{gridConfig.returnTickets[val].arrivalTime}}</td>
+                                          </tr>
+                                        </table>
+                              </div>
+                              <div ng-show="gridConfig.returnTickets.length < 1" class=".col-1-5 noFlight">No Flights Available
+
+                              </div>
+                            </td>
+                            <td class="tableButton">
+                              <div class="col-1-8">
+                                    <button class="btn btn-medium btn-normal" ng-click="">Book Ticket</button>
+                              </div>
+                              </td>
+                            </tr>
+                        </table>
+                        <div class="col-1-8 tableButtonSmall">
+                                <button class="btn btn-medium btn-normal" ng-click="">Book Ticket</button>
+                          </div>
+                    </div>
+                </div>
+        
+        
+            </div>
+        </div>
+            <div class="text-align-center">
+                <span class="grid-message" ng-show="gridConfig.gridData.length === 0">No Data Available</span>
+            </div>
+        </div>
+        <div class="grid-footer">
+
+        </div>
+    </div>
+    

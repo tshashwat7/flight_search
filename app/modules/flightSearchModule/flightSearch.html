@@ -1,0 +1,15 @@
+<div ng-controller="flightSearchController">
+    <tabs>
+        
+        <tab-item title="One way">
+            <search-form one-way="true" id="oneWay">
+                <grid ng-class="{fullWidth:gridConfig}" one-way="true"  grid-config="gridConfig"></grid>
+            </search-form>
+        </tab-item>
+        <tab-item title="Return">
+            <search-form one-way="false" id="return">
+                <grid ng-class="{fullWidth:gridConfig}" one-way="false" grid-config="gridConfig"></grid>
+            </search-form>
+        </tab-item>
+    </tabs>
+</div>
