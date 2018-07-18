@@ -1,4 +1,4 @@
-<h1>AngularJS application with modular approach</h1>
+<h1>UI ASSIGNMENT</h1>
 
 <h3>Introduction</h3>
 <p>It is a application which has a Flight Search module which can be used to search flights.</p>
